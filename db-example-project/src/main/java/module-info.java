@@ -3,6 +3,7 @@ module be.kuleuven.dbproject {
     requires javafx.fxml;
 
     requires org.controlsfx.controls;
+    requires java.sql;
 
     opens be.kuleuven.dbproject to javafx.fxml;
     exports be.kuleuven.dbproject;

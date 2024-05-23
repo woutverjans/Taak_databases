@@ -1,16 +1,35 @@
 package be.kuleuven.dbproject.models;
-
 import java.util.Objects;
 
 public class Player {
     private String name;
-    private int clubId;
-    private int id;
+    private String id;
+    private String club;
+    private int ranking;
+    private int leeftijd;
+    private int hoogstePositie;
+    private int gewicht; //gewicht int kg
+    private int lengte; //lengte in cm
+    private String geslacht; //M voor man V voor vrouw
+    private String toernooi; //Toernooi waar de speler voor ingeschreven is
 
-    public Player(String name, int clubId, int id) {
+    public Player(String name, String id, String club) {
         this.name = name;
-        this.clubId = clubId;
+        this.club = club;
         this.id = id;
+    }
+
+    public Player(String name, String id, String club, int ranking, int leeftijd, int hoogstePositie, int gewicht, int lengte, String geslacht, String toernooi) {
+        this.name = name;
+        this.club = club;
+        this.id = id;
+        this.ranking = ranking;
+        this.leeftijd = leeftijd;
+        this.hoogstePositie = hoogstePositie;
+        this.gewicht = gewicht;
+        this.lengte = lengte;
+        this.geslacht = geslacht;
+        this.toernooi = toernooi;
     }
 
     public String getName() {
@@ -21,19 +40,19 @@ public class Player {
         this.name = name;
     }
 
-    public int getClubId() {
-        return clubId;
+    public String getClub() {
+        return club;
     }
 
-    public void setClubId(int clubId) {
-        this.clubId = clubId;
+    public void setClub(String club) {
+        this.club = club;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -42,19 +61,19 @@ public class Player {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Player player = (Player) o;
-        return clubId == player.clubId && id == player.id && Objects.equals(name, player.name);
+        return club == player.club && id == player.id && Objects.equals(name, player.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, clubId, id);
+        return Objects.hash(name, club, id);
     }
 
     @Override
     public String toString() {
         return "Player{" +
                 "name='" + name + '\'' +
-                ", clubId=" + clubId +
+                ", clubId=" + club +
                 ", id=" + id +
                 '}';
     }

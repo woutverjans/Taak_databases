@@ -28,6 +28,4 @@ public class StartMenuController implements MyController{
             throw new RuntimeException("Kan beheerscherm " + id + " niet vinden", e);
         }
     }
-
-
 }

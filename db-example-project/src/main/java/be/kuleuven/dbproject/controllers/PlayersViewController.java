@@ -23,7 +23,7 @@ public class PlayersViewController implements MyController{
     @FXML
     public void initialize(){
         //TODO: retrieve the correct data from your database
-        Player testPlayer = new Player("Arne Duyver", 101, 100001);
+        Player testPlayer = new Player("Arne Duyver", "101", "100001");
         this.players = new ArrayList<>();
         this.players.add(testPlayer);
 

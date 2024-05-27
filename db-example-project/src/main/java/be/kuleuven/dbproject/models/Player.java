@@ -7,6 +7,15 @@ public class Player {
     private String club;
     private int ranking;
     private int leeftijd;
+
+    public int getHoogstePositie() {return hoogstePositie;}
+    public int getGewicht() {return gewicht;}
+    public String getGeslacht() {return geslacht;}
+    public int getLengte() {return lengte;}
+    public String getToernooi() {return toernooi;}
+    public int getRanking() {return ranking;}
+    public int getLeeftijd() { return leeftijd;}
+
     private int hoogstePositie;
     private int gewicht; //gewicht int kg
     private int lengte; //lengte in cm
@@ -77,4 +86,6 @@ public class Player {
                 ", id=" + id +
                 '}';
     }
+
+
 }

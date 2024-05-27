@@ -2,6 +2,8 @@ package be.kuleuven.dbproject.controllers;
 
 import be.kuleuven.dbproject.Application;
 import be.kuleuven.dbproject.models.Player;
+import be.kuleuven.dbproject.models.ConnectionManager;
+import be.kuleuven.dbproject.models.PlayerRepository;
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -12,6 +14,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class PlayersViewController implements MyController{
@@ -21,12 +24,13 @@ public class PlayersViewController implements MyController{
     private ArrayList<Player> players;
 
     @FXML
-    public void initialize(){
+    public void initialize() throws SQLException {
         //TODO: retrieve the correct data from your database
         Player testPlayer = new Player("Arne Duyver", "101", "100001");
         this.players = new ArrayList<>();
         this.players.add(testPlayer);
-
+        ConnectionManager.createDb();
+        this.players.addAll(PlayerRepository.getAlleSpelers());
         initTable();
         playersTbl.setOnMouseClicked(e -> playerDoubleClicked(e));
     }

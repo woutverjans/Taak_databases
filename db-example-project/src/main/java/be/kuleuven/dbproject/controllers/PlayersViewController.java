@@ -8,7 +8,6 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -16,6 +15,7 @@ import javafx.scene.input.MouseEvent;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 public class PlayersViewController implements MyController{
     @FXML
@@ -24,11 +24,8 @@ public class PlayersViewController implements MyController{
     private ArrayList<Player> players;
 
     @FXML
-    public void initialize() throws SQLException {
-        //TODO: retrieve the correct data from your database
-        Player testPlayer = new Player("Arne Duyver", "101", "100001");
+    public void initialize() throws SQLException { //Niet verwijderen, ondanks aangegeven als niet gebruik, tabel is dan leeg
         this.players = new ArrayList<>();
-        this.players.add(testPlayer);
         ConnectionManager.createDb();
         this.players.addAll(PlayerRepository.getAlleSpelers());
         initTable();
@@ -40,17 +37,20 @@ public class PlayersViewController implements MyController{
     };
 
     private void initTable() {
-        //TODO: change this example to fit your needs
+        playersTbl.getColumns().clear();
+        playersTbl.getItems().clear();
+
         int colIndex = 0;
-        for(var colName : new String[]{"Player ID", "Player name"}) {
+        for (var colName : new String[]{"Player ID", "Player name"}) {
             TableColumn<ObservableList<String>, String> col = new TableColumn<>(colName);
             final int finalColIndex = colIndex;
             col.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().get(finalColIndex)));
             playersTbl.getColumns().add(col);
             colIndex++;
         }
-
-        playersTbl.getItems().add(FXCollections.observableArrayList(""+players.get(0).getId(), players.get(0).getName()));
+        playersTbl.getItems().addAll(players.stream()
+                .map(player -> FXCollections.observableArrayList(player.getId().toString(), player.getName()))
+                .collect(Collectors.toList()));
     }
 
     private void playerDoubleClicked(MouseEvent e) {

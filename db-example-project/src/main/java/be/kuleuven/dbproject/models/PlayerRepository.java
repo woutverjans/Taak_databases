@@ -48,5 +48,6 @@ public class PlayerRepository {
         String sql = "INSERT INTO `spelers` (`Naam`, `Id`, `Ranking`, `Leeftijd`, `Hoogste positie`, `Gewicht`, `Lengte`, `Geslacht`, `Toernooi`, `Club`)" +
                 " VALUES ('"+ naam +"', '"+ id +"', '"+ ranking +"', '"+ leeftijd +"', '"+ hoogstePositie +"', '"+ gewicht +"', '"+ lengte +"', '"+ geslacht +"', '"+ toernooi +"', '"+ club +"')";
         s.executeUpdate(sql);
+        s.close();
     }
 }

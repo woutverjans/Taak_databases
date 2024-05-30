@@ -66,14 +66,14 @@ public class matchToevoegenController implements MyController{
         });
         toevoegBtn.setOnAction(e -> {
             try {
-                voegMatchToen();
+                voegMatchToe();
             } catch (SQLException ex) {
                 throw new RuntimeException(ex);
             }
         });
     }
 
-    private void voegMatchToen() throws SQLException {
+    private void voegMatchToe() throws SQLException {
         var matchId = matchIdTxt.getText();
         var plein = pleinTxt.getText();
         var tijdsstip = tijdsstipTxt.getText();

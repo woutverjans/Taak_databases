@@ -61,7 +61,7 @@ public class PlayersViewController implements MyController{
         playersTbl.getItems().addAll(players.stream()
                 .map(player -> {
                     try {
-                        return FXCollections.observableArrayList(player.getId(), player.getName(), String.valueOf(player.getAantalMatchen()), String.valueOf(player.getAantalGewonnen()), String.valueOf(player.getAantalVerloren()), String.valueOf(player.getLengte()), String.valueOf(player.getGewicht()), String.valueOf(player.getRanking()), player.getGeslacht());
+                        return FXCollections.observableArrayList(player.getId(), player.getName(), String.valueOf(player.getAantalMatchen(player.getId())), String.valueOf(player.getAantalGewonnen(player.getId())), String.valueOf(player.getAantalVerloren(player.getId())), String.valueOf(player.getLengte()), String.valueOf(player.getGewicht()), String.valueOf(player.getRanking()), player.getGeslacht());
                     } catch (SQLException e) {
                         throw new RuntimeException(e);
                     }

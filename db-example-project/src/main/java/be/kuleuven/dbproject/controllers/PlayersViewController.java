@@ -26,7 +26,6 @@ public class PlayersViewController implements MyController{
     @FXML
     public void initialize() throws SQLException { //Niet verwijderen, ondanks aangegeven als niet gebruik, tabel is dan leeg
         this.players = new ArrayList<>();
-        ConnectionManager.createDb();
         this.players.addAll(PlayerRepository.getAlleSpelers());
         initTable();
         playersTbl.setOnMouseClicked(e -> playerDoubleClicked(e));

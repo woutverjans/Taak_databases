@@ -1,16 +1,24 @@
 package be.kuleuven.dbproject.controllers;
 
 import be.kuleuven.dbproject.Application;
+import be.kuleuven.dbproject.models.Player;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
+
+import static be.kuleuven.dbproject.Application.setScene;
+import static be.kuleuven.dbproject.Application.terugNaarStart;
+import static be.kuleuven.dbproject.models.PlayerRepository.addPlayerToDb;
+import static be.kuleuven.dbproject.models.PlayerRepository.schrijfInVoorToernooi;
 
 public class AddPlayerController implements MyController{
     @FXML
@@ -32,23 +40,19 @@ public class AddPlayerController implements MyController{
     @FXML
     private TextField clubTxtBox;
     @FXML
-    private Button addPlayerBtn;
+    private Button voegToeBtn;
+    @FXML
+    private Button homeBtn;
 
     private Object data;
     public void setData(Object data){
         this.data = data;
     };
-    private void goToView(String id) {
-        try {
-            Application.setScene(id, 800, 800,new AddPlayerController(),null);
-        } catch (IOException e) {
-            throw new RuntimeException("Kan beheerscherm " + id + " niet vinden", e);
-        }
-    }
+
     public AddPlayerController(){}
 
     @FXML
-    public void initialize(URL location, ResourceBundle resources) { //Niet verwijderen
+    public void initialize() { //Niet verwijderen
         naamTxtBox.setText("");
         idTxtBox.setText("");
         rankingTxtBox.setText("");
@@ -59,12 +63,35 @@ public class AddPlayerController implements MyController{
         geslachtTxtBox.setText("");
         clubTxtBox.setText("");
 
-        addPlayerBtn.setOnAction(e -> addPlayer()); //TODO knop werkt niet? Geeft geen output
+        homeBtn.setOnAction(e -> {
+            try {
+                terugNaarStart();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+
+        voegToeBtn.setOnAction(e -> {
+            try {
+                addPlayer();
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
 
-    public void addPlayer() {
-        // TODO: Code to add a new player
+    public void addPlayer() throws SQLException {
         String naam = naamTxtBox.getText();
-        System.out.println("naam");
+        String id = idTxtBox.getText();
+        String ranking = rankingTxtBox.getText();
+        String leeftijd = leeftijdTxtBox.getText();
+        String hoogstePositie = hoogstePosTxtBox.getText();
+        String gewicht = gewichtTxtBox.getText();
+        String lengte = lengteTxtBox.getText();
+        String geslacht = geslachtTxtBox.getText();
+        String club = clubTxtBox.getText();
+        System.out.println(naam + " " + id + " " + ranking + " " + leeftijd + " " + hoogstePositie + " " + gewicht + " " + lengte + " " + geslacht + " " + club + " ");
+        Player speler = new Player(naam, id, club, Integer.parseInt(ranking), Integer.parseInt(leeftijd), Integer.parseInt(hoogstePositie), Integer.parseInt(gewicht), Integer.parseInt(lengte), geslacht);
+        addPlayerToDb(speler);
     }
 }

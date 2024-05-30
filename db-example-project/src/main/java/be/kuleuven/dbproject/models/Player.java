@@ -1,5 +1,11 @@
 package be.kuleuven.dbproject.models;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.Objects;
+
+import static be.kuleuven.dbproject.models.ConnectionManager.s;
 
 public class Player {
     private String name;
@@ -39,6 +45,18 @@ public class Player {
         this.lengte = lengte;
         this.geslacht = geslacht;
         this.toernooi = toernooi;
+    }
+    public Player(String name, String id, String club, int ranking, int leeftijd, int hoogstePositie, int gewicht, int lengte, String geslacht) {
+        this.name = name;
+        this.club = club;
+        this.id = id;
+        this.ranking = ranking;
+        this.leeftijd = leeftijd;
+        this.hoogstePositie = hoogstePositie;
+        this.gewicht = gewicht;
+        this.lengte = lengte;
+        this.geslacht = geslacht;
+        //Versie voor nieuwe spelers nog niet ingeschreven voor een toernooi
     }
 
     public String getName() {
@@ -86,6 +104,4 @@ public class Player {
                 ", id=" + id +
                 '}';
     }
-
-
 }

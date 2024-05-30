@@ -10,13 +10,6 @@ public class ConnectionManager {
 
     public static void createDb() throws SQLException {
         try {
-                    /* tijdelijk even weggehaald
-                    DROP TABLE IF EXISTS spelers;
-                    DROP TABLE IF EXISTS clubs;
-                    DROP TABLE IF EXISTS toernooien;
-                    DROP TABLE IF EXISTS matchen;
-                    DROP TABLE IF EXISTS reeksen;
-                    */
             connection = DriverManager.getConnection("jdbc:sqlite:mydb.db");
             s = connection.createStatement();
             s.executeUpdate("""
@@ -69,7 +62,8 @@ public class ConnectionManager {
                     CREATE TABLE toernooien (
                       ID text NOT NULL PRIMARY KEY,
                       Naam text NOT NULL,
-                      Locatie text NOT NULL
+                      Locatie text NOT NULL,
+                      Startdatum text not NULL
                     );
                                                     
                     INSERT INTO clubs (Naam, Adres) VALUES
@@ -89,8 +83,8 @@ public class ConnectionManager {
                       ('An Aerts', 'anaerts1', 10, 20, 6, 65, 180, 'V', NULL, 'G.T. Tessenderlo'),
                       ('Ben Berent', 'benberent0', 1, 40, 4, 80, 190, 'M', NULL, 'T.C. Ham');
                                                     
-                    INSERT INTO toernooien (ID, Naam, Locatie) VALUES
-                      ('gttessenderlo4april2024', 'Paastoernooi G.T. Tessenderlo', 'G.T. Tessenderlo');
+                    INSERT INTO toernooien (ID, Naam, Locatie, Startdatum) VALUES
+                      ('gttessenderlo4april2024', 'Paastoernooi G.T. Tessenderlo', 'G.T. Tessenderlo', '4 april 2024');
                                                     
                     COMMIT;
                                 """);

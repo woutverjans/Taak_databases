@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TextField fx:id="matchIdTxt" layoutX="102.0" layoutY="17.0" />
+      <TextField fx:id="pleinTxt" layoutX="102.0" layoutY="50.0" />
+      <TextField fx:id="tijdsstipTxt" layoutX="102.0" layoutY="88.0" />
+      <TextField fx:id="datumTxt" layoutX="102.0" layoutY="135.0" />
+      <TextField fx:id="speler1Txt" layoutX="102.0" layoutY="175.0" />
+      <TextField fx:id="speler2Txt" layoutX="102.0" layoutY="216.0" />
+      <TextField fx:id="score1Txt" layoutX="102.0" layoutY="258.0" />
+      <TextField fx:id="score2Txt" layoutX="102.0" layoutY="299.0" />
+      <TextField fx:id="reeksTxt" layoutX="102.0" layoutY="342.0" />
+      <Text layoutX="20.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Match id:" />
+      <Text layoutX="31.0" layoutY="62.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Plein:" />
+      <Text layoutX="23.0" layoutY="105.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Tijdsstip:" />
+      <Text layoutX="27.0" layoutY="152.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Datum:" />
+      <Text layoutX="16.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID speler 1:" />
+      <Text layoutX="16.0" layoutY="233.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ID speler 2:" />
+      <Text layoutX="9.0" layoutY="275.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score speler 1:" />
+      <Text layoutX="9.0" layoutY="316.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Score speler 2:" />
+      <Text layoutX="36.0" layoutY="359.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Reeks:" />
+      <Button fx:id="homeBtn" layoutX="433.0" layoutY="334.0" mnemonicParsing="false" text="Terug naar startscherm" />
+      <Button fx:id="toevoegBtn" layoutX="282.0" layoutY="334.0" mnemonicParsing="false" text="Voeg match toe" />
+      <TextField fx:id="soortTxt" layoutX="359.0" layoutY="26.0" />
+      <TextField fx:id="scheidsTxt" layoutX="359.0" layoutY="80.0" />
+      <Text layoutX="289.0" layoutY="43.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Soort:" />
+      <Text layoutX="281.0" layoutY="97.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Scheidsrechter" />
+   </children>
+</AnchorPane>

@@ -11,9 +11,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
+
+import static be.kuleuven.dbproject.Application.terugNaarStart;
 
 public class MatchOverzichtController implements MyController {
     private ArrayList<Match> matchen;
@@ -22,16 +25,25 @@ public class MatchOverzichtController implements MyController {
     @FXML
     private Button zoekBtn;
     @FXML
+    private Button homeBtn;
+    @FXML
     private TableView matchTbl;
 
     public MatchOverzichtController(){};
     @FXML
-    public void initialize(){
+    public void initialize(){ //Niet verwijderenTODO home knop implementeren
         idTxt.setText("");
         zoekBtn.setOnAction(e -> {
             try {
                 vernieuwLijst();
             } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
+        homeBtn.setOnAction(e -> {
+            try {
+                terugNaarStart();
+            } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });

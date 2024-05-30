@@ -5,6 +5,16 @@ public class Toernooi {
     private String naam;
     private String locatie;
 
+    public String getIdWedstrijdleider() {
+        return idWedstrijdleider;
+    }
+
+    public void setIdWedstrijdleider(String idWedstrijdleider) {
+        this.idWedstrijdleider = idWedstrijdleider;
+    }
+
+    private String idWedstrijdleider;
+
     public Toernooi(String id, String naam, String locatie) {
         this.id = id;
         this.naam = naam;

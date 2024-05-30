@@ -8,6 +8,7 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.input.MouseEvent;
@@ -17,10 +18,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
 
+import static be.kuleuven.dbproject.Application.terugNaarStart;
+
 public class PlayersViewController implements MyController{
     @FXML
     private TableView playersTbl;
-
+    @FXML
+    private Button homeBtn;
     private ArrayList<Player> players;
 
     @FXML
@@ -29,6 +33,13 @@ public class PlayersViewController implements MyController{
         this.players.addAll(PlayerRepository.getAlleSpelers());
         initTable();
         playersTbl.setOnMouseClicked(e -> playerDoubleClicked(e));
+        homeBtn.setOnAction(e -> {
+            try {
+                terugNaarStart();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
     }
     private Object data;
     public void setData(Object data){
@@ -40,7 +51,7 @@ public class PlayersViewController implements MyController{
         playersTbl.getItems().clear();
 
         int colIndex = 0;
-        for (var colName : new String[]{"Player ID", "Player name"}) {
+        for (var colName : new String[]{"Player ID", "Player name", "Aantal gespeelde matchen", "Aantal gewonnen matchen", "Aantal verloren matchen", "Lengte", "Gewicht", "Ranking", "Geslacht"}) {
             TableColumn<ObservableList<String>, String> col = new TableColumn<>(colName);
             final int finalColIndex = colIndex;
             col.setCellValueFactory(f -> new ReadOnlyObjectWrapper<>(f.getValue().get(finalColIndex)));
@@ -48,7 +59,13 @@ public class PlayersViewController implements MyController{
             colIndex++;
         }
         playersTbl.getItems().addAll(players.stream()
-                .map(player -> FXCollections.observableArrayList(player.getId().toString(), player.getName()))
+                .map(player -> {
+                    try {
+                        return FXCollections.observableArrayList(player.getId(), player.getName(), String.valueOf(player.getAantalMatchen()), String.valueOf(player.getAantalGewonnen()), String.valueOf(player.getAantalVerloren()), String.valueOf(player.getLengte()), String.valueOf(player.getGewicht()), String.valueOf(player.getRanking()), player.getGeslacht());
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                })
                 .collect(Collectors.toList()));
     }
 

@@ -3,9 +3,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 import static be.kuleuven.dbproject.models.ConnectionManager.s;
+import static be.kuleuven.dbproject.models.PlayerRepository.getMatchenOpSpelerId;
 
 public class Player {
     private String name;
@@ -103,5 +105,31 @@ public class Player {
                 ", clubId=" + club +
                 ", id=" + id +
                 '}';
+    }
+
+    public int getAantalMatchen() throws SQLException {
+        ArrayList<Match> matchen = (ArrayList<Match>) getMatchenOpSpelerId(this.id);
+        int aantalGespeeld = matchen.size();
+        return aantalGespeeld;
+    }
+    public int getAantalGewonnen() throws SQLException {
+        ArrayList<Match> matchen = (ArrayList<Match>) getMatchenOpSpelerId(this.id);
+        int aantalGewonnen  = 0;
+        //Voor elke waar id = id van speler 1 en score van speler 1 > score van speler 2
+        for (Match match : matchen) {
+            if (match.getIdSpeler1() == this.id && match.getScoreSpeler1() > match.getScoreSpeler2()) {
+                aantalGewonnen++;
+            }
+
+            // + Voor elke waar id = id van speler 2 en score van speler 2 > score van speler 1
+            if (match.getIdSpeler2() == this.id && match.getScoreSpeler2() > match.getScoreSpeler1()) {
+                aantalGewonnen++;
+            }
+        }
+        return aantalGewonnen;
+    }
+
+    public int getAantalVerloren() throws SQLException {
+        return getAantalMatchen() - getAantalGewonnen();
     }
 }

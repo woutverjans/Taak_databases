@@ -16,8 +16,7 @@ public class Match {
     private String idScheidsRechter;
     private String reeks;
 
-    //Voor een gewone match (geen finale of halve finale zonder scheids)
-    public Match(String matchId, String plein, String tijdsStip, String datum, String idSpeler1, String idSpeler2, int score1, int score2, String reeks){
+    public Match(String matchId, String plein, String tijdsStip, String datum, String idSpeler1, String idSpeler2, int score1, int score2, String reeks, String soort, String scheidsId){
         this.matchId = matchId;
         this.plein = plein;
         this.tijdsStip = tijdsStip;
@@ -27,6 +26,8 @@ public class Match {
         this.scoreSpeler1 = score1;
         this.scoreSpeler2 = score2;
         this.reeks = reeks;
+        this.soort = soort;
+        this.idScheidsRechter = scheidsId;
     }
 
     public String getMatchId() {return matchId;}

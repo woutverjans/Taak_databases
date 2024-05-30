@@ -18,6 +18,8 @@ public class StartMenuController implements MyController{
     private Button schrijfInVoorToernooiBtn;
     @FXML
     private Button matchOverzichtBtn;
+    @FXML
+    private Button voegMatchToeBtn;
 
     @FXML
     public void initialize(){
@@ -25,6 +27,7 @@ public class StartMenuController implements MyController{
         addPlayerBtn.setOnAction(e -> goToAddPlayerView("addPlayer-view.fxml"));
         schrijfInVoorToernooiBtn.setOnAction(e -> goToInschrijfView("inschrijvenVoorToernooi-view.fxml"));
         matchOverzichtBtn.setOnAction(e -> goToMatchOverzicht("matchOverzicht-view.fxml"));
+        voegMatchToeBtn.setOnAction(e -> goToMatchToevoegen("match-toevoegen-view.fxml"));
     }
 
     private Object data;
@@ -34,7 +37,7 @@ public class StartMenuController implements MyController{
 
     private void goToView(String id) {
         try {
-            setScene(id, 800, 800,new PlayersViewController(),null);
+            setScene(id, 1000, 800,new PlayersViewController(),null);
         } catch (IOException e) {
             throw new RuntimeException("Kan beheerscherm " + id + " niet vinden", e);
         }
@@ -60,6 +63,13 @@ public class StartMenuController implements MyController{
             setScene(id, 800, 800, new MatchOverzichtController(),null);
         } catch (IOException e) {
             throw new RuntimeException("Kan inschrijfscherm " + id + " niet vinden", e);
+        }
+    }
+    private void goToMatchToevoegen(String id){
+        try {
+            setScene(id, 800, 800, new matchToevoegenController(),null);
+        } catch (IOException e) {
+            throw new RuntimeException("Kan match toevoegscherm " + id + " niet vinden", e);
         }
     }
 }

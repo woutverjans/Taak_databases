@@ -84,7 +84,7 @@ public class PlayerRepository {
             var scoreSpeler1 = result.getInt("Score_speler_1");
             var scoreSpeler2 = result.getInt("Score_speler_2");
             var reeks = result.getString("Reeks");
-            Match match = new Match(matchId, plein, tijdsStip, datum, idSpeler1, idSpeler2, scoreSpeler1, scoreSpeler2, reeks);
+            Match match = new Match(matchId, plein, tijdsStip, datum, idSpeler1, idSpeler2, scoreSpeler1, scoreSpeler2, reeks, null, null);
             matchLijst.add(match);
         }
         statement.close();

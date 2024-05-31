@@ -33,7 +33,6 @@ public class PlayerDetailViewController implements MyController {
     };
 
     public void initMatchesTbl(){
-        //TODO: change this example to fit your needs
         int colIndex = 0;
         for(var colName : new String[]{"Tennisclub", "Reeks", "Datum"}) {
             TableColumn<ObservableList<String>, String> col = new TableColumn<>(colName);
@@ -43,7 +42,6 @@ public class PlayerDetailViewController implements MyController {
             colIndex++;
         }
 
-        //TODO get correct data from database
         matchesTbl.getItems().add(FXCollections.observableArrayList("TPTessenderlo","Heren 2", ""+new Date(2024, 6, 6)));
     }
 }

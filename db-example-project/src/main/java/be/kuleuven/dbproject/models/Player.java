@@ -117,16 +117,14 @@ public class Player {
         int aantalGewonnen  = 0;
         //Voor elke waar id = id van speler 1 en score van speler 1 > score van speler 2
         for (Match match : matchen) {
-            System.out.println("eerste loop doorlopen");
-            if (match.getIdSpeler1() == id && match.getScoreSpeler1() > match.getScoreSpeler2()) {
+            if (Objects.equals(match.getIdSpeler1(), id) && match.getScoreSpeler1() > match.getScoreSpeler2()) {
                 aantalGewonnen++;
-                System.out.println("eerste if is true");
             }
         }
 
         // + Voor elke waar id = id van speler 2 en score van speler 2 > score van speler 1
         for (Match match : matchen) {
-            if (match.getIdSpeler2() == id && match.getScoreSpeler2() > match.getScoreSpeler1()) {
+            if (Objects.equals(match.getIdSpeler2(), id) && match.getScoreSpeler2() > match.getScoreSpeler1()) {
                 aantalGewonnen++;
             }
         }
